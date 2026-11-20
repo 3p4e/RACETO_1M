@@ -29,6 +29,13 @@ Can I ask about what you've actually done in the last couple of years?"
 | 7 | "What's coming in the next 12 months: an inspection, new products, a new site, the Annex 11 or Annex 22 changes? How are you planning for it?" | "Will you need help with Annex 22?" | A trigger, a deadline, a budget |
 | 8 | "How do you handle documentation and CoA review today? Roughly how many hours a month go on it?" | "Would AI help your documents?" | The size of the recurring pain (the desk offer) |
 
+### Segment questions (ask only where they fit)
+| # | Segment | Ask this | Not this (leading) |
+|---|---|---|---|
+| 9 | Manufacturers, CDMOs (line B) | "The last regulatory or CMC document you outsourced: what was it, who wrote it, what did it cost, how long did it take?" | "Would you outsource dossier writing?" |
+| 10 | Importers, distributors, brands (line C) | "How do you check suppliers' certificates of analysis today? Who does it, how many a month, and what went wrong last time?" | "Is CoA review a pain?" |
+| 11 | Any QA/QC team (line D) | "What training on AI or data integrity has your team had? Who ran it, who paid, and how much?" | "Would you attend an AI course?" |
+
 ### Follow-ups for specifics (use constantly)
 - "When exactly was that? What did you do next?"
 - "What did that cost you in money, days, or a delayed release?"

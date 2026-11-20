@@ -3,6 +3,12 @@
 Built 20.11.2026 from all 45 of the owner's repositories and the work on record. Assets are described generically. No employer
 material is named or reused (see `CLAUDE.md`). Prices and volumes are **estimates to be tested**, never market facts.
 
+## Decisions (owner, 20.11.2026)
+- **Dropped:** I (grow-room vision), J (multi-agent coding workspace), K (consumer micro-projects), L (affiliate review pages).
+- **Capped:** H (AI video studio) at **5 hours a week** until it has a paying customer.
+- **Pursued:** D → A + B → C, as in §3.
+- **Repositories holding employer material** are being made private by the owner (20.11.2026).
+
 ## 1. What the owner actually has (the asset base)
 | Capability | Evidence in the repositories | Rare? |
 |---|---|---|
@@ -62,7 +68,7 @@ H (video) runs only on a fixed 5 h/week budget, as a creative and side-income li
 - New infrastructure toys that no customer pays for.
 
 ## 5. New questions for the validation interviews
-Add to `docs/interviews/INTERVIEW_GUIDE.md` for the right segments:
+Added to `docs/interviews/INTERVIEW_GUIDE.md` (questions 9–11):
 - B: "The last regulatory or CMC document you outsourced: what was it, who wrote it, what did it cost, how long did it take?"
 - C: "How do you check suppliers' CoAs today? Who does it, how many a month, and what went wrong last time?"
 - D: "What training on AI or data integrity has your team had? Who paid, and how much?"
