@@ -102,7 +102,7 @@ def main():
         raise ValueError(ty)
 
     n_def = int(round(a.batches * a.defect_rate))
-    defect_slots = rnd.sample(range(a.batches), n_def)
+    defect_slots = rnd.sample(range(10, a.batches), n_def)  # the first 10 lots stay clean (a duplicate needs an earlier lot)
     kinds = list(DEFECTS)
     planned = {i: kinds[k % len(kinds)] for k, i in enumerate(defect_slots)}
 
@@ -110,7 +110,7 @@ def main():
         cv = rnd.choice(spec["cultivars"])
         harvest = start + dt.timedelta(days=int(i * 3.4) + rnd.randint(0, 2))
         manuf = harvest + dt.timedelta(days=rnd.randint(14, 24))
-        pack = manuf + dt.timedelta(days=rnd.randint(2, 9))
+        pack = manuf + dt.timedelta(days=rnd.randint(18, 28))  # release testing completes before packaging
         parent = f"{cv['code']}{harvest:%m%y}{i % 7 + 1:02d}"
         bid = f"DMO-{harvest:%y}-{i + 1:03d}"
         sub = ""
@@ -121,7 +121,7 @@ def main():
                         "cultivar_code": cv["code"], "harvest_date": d(harvest), "manufacture_date": d(manuf),
                         "packaging_date": d(pack), "batch_size_kg": round(rnd.uniform(4, 40), 1)})
 
-        test_day = pack - dt.timedelta(days=rnd.randint(1, 6))
+        test_day = manuf + dt.timedelta(days=rnd.randint(1, 3))
         issued = {lab: test_day + dt.timedelta(days=rnd.randint(3, 12)) for lab in ("LAB-A", "LAB-B", "LAB-C")}
         issued["INHOUSE"] = test_day
         if defect == "RESULT_AFTER_PACK":
@@ -130,9 +130,14 @@ def main():
         if defect == "MISSING_PAGE":
             cmap["LAB-B"]["pages_total"] = max(cmap["LAB-B"]["pages_total"], 3)
             cmap["LAB-B"]["pages_received"] = cmap["LAB-B"]["pages_total"] - 1
-        if defect == "DUP_CERT_NO" and len(certs) > 8:
-            prev = [c for c in certs if c["lab"] == "LAB-A" and c["batch_id"] != bid][-1]
-            cmap["LAB-A"]["cert_no"] = prev["cert_no"]
+        if defect == "DUP_CERT_NO":
+            # copy from a lot made clearly earlier (>= 10 lots back), so production order is unambiguous
+            earlier = [c for c in certs if c["lab"] == "LAB-A" and c["kind"] == "release"
+                       and c["batch_id"][-3:].isdigit() and int(c["batch_id"][-3:]) <= i + 1 - 10]
+            if earlier:
+                cmap["LAB-A"]["cert_no"] = earlier[-1]["cert_no"]
+            else:
+                defect = None  # nothing earlier to duplicate: plant nothing, list nothing
 
         fail_test = {"OOS_POTENCY": "Total THC", "OOS_LOD": "Loss on drying", "OOS_MICRO": "TAMC"}.get(defect)
         missing_names = {"Total aflatoxins (B1+B2+G1+G2)", "Lead (Pb)", "Pesticide residues"} if defect == "MISSING_PAGE" else set()
