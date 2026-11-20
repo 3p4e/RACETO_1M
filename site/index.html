@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI in the GMP Quality System: Workshop</title>
+<meta name="description" content="Two-session online workshop for QA/QC heads, QPs and validation engineers: Annex 11 (revised), draft Annex 22, EU AI Act AI literacy, and a live test of an AI reviewer against planted defects.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,600&display=swap">
+<style>
+/* Layout: one reading column; a defect ledger is the signature element */
+:root{--bg:#f5f6f3;--surface:#fff;--fg:#1a2320;--muted:#5a6863;--rule:#d8ded9;--accent:#1f6b5c;--accent-soft:#e1eeea;--flag:#a3412c;
+--display:"Fraunces",Georgia,serif;--body:"IBM Plex Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#111715;--surface:#19211f;--fg:#e2eae6;--muted:#9aaaa4;--rule:#2b3632;--accent:#6cc3ad;--accent-soft:#1d322e;--flag:#ef8e7b;color-scheme:dark}}
+*{box-sizing:border-box}
+.wrap>*,.cols>*{min-width:0}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 var(--body)}
+.wrap{max-width:860px;margin:0 auto;padding:48px 20px 80px;display:grid;gap:56px}
+h1{font-family:var(--display);font-size:clamp(30px,5vw,46px);line-height:1.08;margin:0 0 16px;text-wrap:balance}
+h2{font-family:var(--display);font-size:26px;margin:0 0 12px}
+.eyebrow{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+p{margin:0 0 12px;max-width:66ch} .muted{color:var(--muted)} .small{font-size:13.5px;color:var(--muted)}
+.cta{display:inline-block;background:var(--accent);color:var(--bg);text-decoration:none;font-weight:600;padding:12px 20px;border-radius:6px}
+.cta:focus-visible{outline:3px solid var(--fg);outline-offset:2px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;font:14px var(--mono);color:var(--muted);margin:16px 0 22px}
+.ledger{background:var(--surface);border:1px solid var(--rule);border-radius:8px;overflow-x:auto}
+.ledger table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+.ledger th,.ledger td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule)}
+.ledger th{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.ledger td.n{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+.ledger td.f{color:var(--flag);font-family:var(--mono)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.cols section{display:grid;gap:6px;align-content:start}
+ol,ul{margin:0;padding-left:20px} li{margin-bottom:6px}
+.price{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.tier{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:16px;display:grid;gap:4px;align-content:start}
+.tier b{font:600 24px var(--mono)}
+.tier.main{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+footer{border-top:1px solid var(--rule);padding-top:20px}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<header>
+  <p class="eyebrow">Online workshop · 2 × 3.5 hours · max 25 seats</p>
+  <h1>AI in the GMP Quality System</h1>
+  <p>Revised Annex 11, draft Annex 22 and the EU AI Act's AI-literacy duty, explained for the people who sign the batch records.
+     Ends with a live test: an AI reviews 200 batches of certificates, and we score it against defects we planted ourselves.</p>
+  <div class="meta"><span>[DATE 1] &amp; [DATE 2]</span><span>[TIME] CET</span><span>English</span></div>
+  <a class="cta" href="[BOOKING_LINK]">Book a seat · €490 early bird</a>
+  <p class="small" style="margin-top:10px">Early-bird price until [DATE]. Full refund if the cohort is cancelled.</p>
+</header>
+
+<section>
+  <p class="eyebrow">Why now</p>
+  <h2>Part of the AI regulation is already in force</h2>
+  <p>Since 2 February 2025, Article 4 of the EU AI Act requires companies that <i>use</i> AI systems to ensure their staff have sufficient
+     AI literacy. A QC analyst tidying a deviation in a chatbot already makes the company a deployer.</p>
+  <p>In July 2025 the EU and PIC/S published drafts of a revised Annex 11, a revised Chapter 4 and a new Annex 22 on artificial
+     intelligence. The questions they raise are the ones an inspector will ask: where is AI used, who approved it, how was it tested,
+     and who reviews its output?</p>
+  <p class="small">The status of the draft texts is checked and updated before every cohort.</p>
+</section>
+
+<section>
+  <p class="eyebrow">The live test</p>
+  <h2>Would your AI catch these?</h2>
+  <p>A fictional company: 200 batches, over 800 laboratory certificates, nearly 4,000 results. Every name and number is invented;
+     limits are modelled on Ph. Eur. texts. Hidden inside are 36 defects of the kind that reach inspectors.</p>
+  <div class="ledger"><table>
+    <tr><th>Planted defect</th><th>What a reviewer must do</th><th>Count</th></tr>
+    <tr><td class="f">OUT OF SPECIFICATION</td><td>flag the result against its criterion</td><td class="n">12</td></tr>
+    <tr><td class="f">MISSING PAGE</td><td>hold the batch; never read around the gap</td><td class="n">4</td></tr>
+    <tr><td class="f">LABS DISAGREE</td><td>escalate; never pick the convenient value</td><td class="n">4</td></tr>
+    <tr><td class="f">SUB-LOT MIX-UP</td><td>refuse another lot's certificate</td><td class="n">4</td></tr>
+    <tr><td class="f">RESULT AFTER PACKAGING</td><td>flag the date order</td><td class="n">4</td></tr>
+    <tr><td class="f">DUPLICATE CERTIFICATE NO.</td><td>flag the data-integrity breach</td><td class="n">4</td></tr>
+    <tr><td class="f">RETEST DRIFT</td><td>recognise degradation over time</td><td class="n">4</td></tr>
+  </table></div>
+  <p class="small" style="margin-top:10px">A reviewer passes only if it finds all 36 and invents nothing else: test data and acceptance criteria, as Annex 22's logic requires.</p>
+</section>
+
+<section class="cols">
+  <section>
+    <p class="eyebrow">Session 1 · rules and risk</p>
+    <ol>
+      <li>Map every AI use on your site, official and unofficial</li>
+      <li>Annex 11 (2011 and draft), draft Annex 22, draft Chapter 4, EU AI Act, EMA reflection paper</li>
+      <li>Risk classification with ICH Q9(R1) and GAMP 5</li>
+      <li>ALCOA+ for prompts, outputs and model versions</li>
+    </ol>
+  </section>
+  <section>
+    <p class="eyebrow">Session 2 · doing it</p>
+    <ol start="5">
+      <li>The live test against 36 planted defects</li>
+      <li>The minimum control set for AI in QA/QC</li>
+      <li>Draft the procedure and validation approach for one real use on your site</li>
+      <li>Ten inspector questions and the evidence for each</li>
+    </ol>
+  </section>
+</section>
+
+<section>
+  <p class="eyebrow">You take home</p>
+  <ul>
+    <li>AI-use inventory and risk-classification sheet</li>
+    <li>Outline of an AI-use procedure: approved uses, human review, records</li>
+    <li>Validation-approach skeleton for a non-critical and a critical AI use</li>
+    <li>AI-literacy training record (EU AI Act, Art. 4)</li>
+    <li>Inspection question-and-evidence checklist</li>
+  </ul>
+</section>
+
+<section>
+  <p class="eyebrow">For</p>
+  <p>Heads of QA and QC, Qualified Persons, validation and CSV engineers, data-integrity leads and laboratory managers in
+     pharmaceutical, herbal, food-supplement and cosmetics manufacturing and ISO/IEC 17025 laboratories. No coding needed.</p>
+</section>
+
+<section>
+  <p class="eyebrow">Price</p>
+  <div class="price">
+    <div class="tier main"><span>Online seat</span><b>€690</b><span class="small">€490 early bird until [DATE]</span></div>
+    <div class="tier"><span>In-house day, up to 15</span><b>€4,900</b><span class="small">plus travel</span></div>
+    <div class="tier"><span>In-house day + AI readiness assessment</span><b>€9,500</b><span class="small">written report included</span></div>
+  </div>
+  <p class="small" style="margin-top:10px">Prices exclude VAT where applicable. A reduced rate for companies in the Western Balkans is available on request.</p>
+  <a class="cta" href="[BOOKING_LINK]">Book a seat</a>
+</section>
+
+<section>
+  <p class="eyebrow">Your trainer</p>
+  <h2>Blagoj Nikolov, M.Pharm.</h2>
+  <p>Master Pharmacist and drug quality control specialist, formerly a Qualified Person for batch release, now a QC manager in EU-GMP
+     manufacturing. He builds and uses AI tools for regulated documentation every day, and teaches from that practice, not from slides.</p>
+</section>
+
+<footer class="small">
+  <p>This workshop teaches regulatory requirements and methods. It does not certify compliance; responsibility for each
+     participant's quality system stays with their company. Certificate of attendance issued; not accredited CPD.</p>
+  <p>Contact: [EMAIL]</p>
+</footer>
+</main>
+</body>
+</html>

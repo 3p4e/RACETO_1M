@@ -1,0 +1,43 @@
+{
+  "_note": "DEMO specification for synthetic test data. Every limit is modelled on a PUBLIC text named in 'basis' and must be verified against the current edition before any real use. No value comes from any company's specification.",
+  "company": {
+    "name": "Arcadia Demo Botanicals (fictional)",
+    "address": "1 Example Street, Demo City (fictional)",
+    "licence": "DEMO-GMP-0000 (fictional)"
+  },
+  "labs": {
+    "LAB-A": {"name": "Alpha Analytical Laboratory (fictional)", "accreditation": "ISO/IEC 17025, Accr. No. DEMO-17025-001 (fictional)", "scope": ["potency", "lod", "identification"]},
+    "LAB-B": {"name": "Beta Contaminants Laboratory (fictional)", "accreditation": "ISO/IEC 17025, Accr. No. DEMO-17025-002 (fictional)", "scope": ["mycotoxins", "metals", "pesticides"]},
+    "LAB-C": {"name": "Gamma Microbiology Laboratory (fictional)", "accreditation": "ISO/IEC 17025, Accr. No. DEMO-17025-003 (fictional)", "scope": ["micro", "potency"]},
+    "INHOUSE": {"name": "Arcadia QC Laboratory (fictional, in-house)", "accreditation": "none", "scope": ["identification", "foreign_matter", "lod"]}
+  },
+  "cultivars": [
+    {"code": "AUR", "name": "Aurora Demo", "thc_nominal": 22.0, "cbd_nominal": 0.1},
+    {"code": "BOR", "name": "Borealis Demo", "thc_nominal": 18.0, "cbd_nominal": 0.1},
+    {"code": "CAL", "name": "Calyx Balanced Demo", "thc_nominal": 9.0, "cbd_nominal": 9.0},
+    {"code": "DUN", "name": "Dune Demo", "thc_nominal": 26.0, "cbd_nominal": 0.1},
+    {"code": "ECH", "name": "Echo Low-THC Demo", "thc_nominal": 1.0, "cbd_nominal": 12.0},
+    {"code": "FEN", "name": "Fennel Ridge Demo", "thc_nominal": 14.0, "cbd_nominal": 0.5}
+  ],
+  "tests": [
+    {"id": "1",   "name": "Identification A (macroscopic)", "lab": "INHOUSE", "type": "pass", "criterion": "Conforms", "basis": "Ph. Eur. herbal drug identification A (pattern)"},
+    {"id": "2",   "name": "Identification B (microscopic)", "lab": "INHOUSE", "type": "pass", "criterion": "Conforms", "basis": "Ph. Eur. herbal drug identification B (pattern)"},
+    {"id": "3",   "name": "Total THC", "lab": "LAB-A", "type": "assay", "unit": "%", "window_rel": 0.10, "basis": "nominal +/- 10 % relative, demo grade window"},
+    {"id": "4",   "name": "Total CBD", "lab": "LAB-A", "type": "assay", "unit": "%", "window_rel": 0.10, "basis": "nominal +/- 10 % relative, demo grade window"},
+    {"id": "5",   "name": "CBN", "lab": "LAB-A", "type": "max", "unit": "%", "limit": 1.0, "basis": "demo limit (degradation marker)"},
+    {"id": "6",   "name": "Loss on drying", "lab": "LAB-A", "type": "max", "unit": "%", "limit": 10.0, "basis": "Ph. Eur. 2.2.32; limit modelled on Ph. Eur. 3028 - verify"},
+    {"id": "7",   "name": "Foreign matter", "lab": "INHOUSE", "type": "max", "unit": "%", "limit": 2.0, "basis": "Ph. Eur. 2.8.2 - verify limit"},
+    {"id": "8.1", "name": "Aflatoxin B1", "lab": "LAB-B", "type": "max", "unit": "ug/kg", "limit": 2.0, "basis": "Ph. Eur. 2.8.18 / Herbal drugs (1433) - verify"},
+    {"id": "8.2", "name": "Total aflatoxins (B1+B2+G1+G2)", "lab": "LAB-B", "type": "max", "unit": "ug/kg", "limit": 4.0, "basis": "Ph. Eur. 2.8.18 / Herbal drugs (1433) - verify"},
+    {"id": "8.3", "name": "Ochratoxin A", "lab": "LAB-B", "type": "max", "unit": "ug/kg", "limit": 20.0, "basis": "demo limit - verify against Ph. Eur. 2.8.22 and EU food contaminant law"},
+    {"id": "9.1", "name": "Lead (Pb)", "lab": "LAB-B", "type": "max", "unit": "mg/kg", "limit": 5.0, "basis": "Ph. Eur. Herbal drugs (1433) - verify"},
+    {"id": "9.2", "name": "Cadmium (Cd)", "lab": "LAB-B", "type": "max", "unit": "mg/kg", "limit": 1.0, "basis": "Ph. Eur. Herbal drugs (1433) - verify"},
+    {"id": "9.3", "name": "Mercury (Hg)", "lab": "LAB-B", "type": "max", "unit": "mg/kg", "limit": 0.1, "basis": "Ph. Eur. Herbal drugs (1433) - verify"},
+    {"id": "10",  "name": "Pesticide residues", "lab": "LAB-B", "type": "nd", "criterion": "ND (all residues in scope)", "basis": "Ph. Eur. 2.8.13 - scope is demo"},
+    {"id": "11.1","name": "TAMC", "lab": "LAB-C", "type": "max_cfu", "unit": "CFU/g", "limit": 100000, "basis": "modelled on Ph. Eur. 5.1.8 - verify category"},
+    {"id": "11.2","name": "TYMC", "lab": "LAB-C", "type": "max_cfu", "unit": "CFU/g", "limit": 10000, "basis": "modelled on Ph. Eur. 5.1.8 - verify category"},
+    {"id": "11.3","name": "Bile-tolerant gram-negative bacteria", "lab": "LAB-C", "type": "max_cfu", "unit": "CFU/g", "limit": 1000, "basis": "modelled on Ph. Eur. 5.1.8 - verify"},
+    {"id": "11.4","name": "Escherichia coli", "lab": "LAB-C", "type": "absent", "criterion": "Absent in 1 g", "basis": "Ph. Eur. 2.6.13"},
+    {"id": "11.5","name": "Salmonella", "lab": "LAB-C", "type": "absent", "criterion": "Absent in 25 g", "basis": "Ph. Eur. 2.6.13"}
+  ]
+}
