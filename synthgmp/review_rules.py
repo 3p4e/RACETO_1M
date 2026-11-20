@@ -22,9 +22,9 @@ def main(d, out):
     def flag(bid, kind, ev):
         found.append({"batch_id": bid, "defect": kind, "evidence": ev})
 
-    # 1. results outside their criterion (release testing only; retests are judged under rule 7)
+    # 1. results outside their criterion, release and retest alike (EU GMP Part I 6.35: OOS stability results are reported)
     for r in results:
-        if r["kind"] == "release" and r["conforms"] == "no":
+        if r["conforms"] == "no":
             kind = OOS_KIND.get(r["test"]) or ("OOS_MICRO" if r["test"] in MICRO else "OOS_OTHER")
             flag(r["batch_id"], kind, f"{r['test']} = {r['result']} {r['unit']} vs {r['criterion']} ({r['cert_no']})")
 

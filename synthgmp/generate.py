@@ -111,7 +111,7 @@ def main():
         harvest = start + dt.timedelta(days=int(i * 3.4) + rnd.randint(0, 2))
         manuf = harvest + dt.timedelta(days=rnd.randint(14, 24))
         pack = manuf + dt.timedelta(days=rnd.randint(18, 28))  # release testing completes before packaging
-        parent = f"{cv['code']}{harvest:%m%y}{i % 7 + 1:02d}"
+        parent = f"{cv['code']}{harvest:%m%y}{i + 1:03d}"  # unique per lot
         bid = f"DMO-{harvest:%y}-{i + 1:03d}"
         sub = ""
         defect = planned.get(i)
@@ -164,13 +164,16 @@ def main():
         if defect == "SUBLOT_TRAP":
             sis = dict(batches[-1]); sis["batch_id"] = bid + "S"; sis["cultivation_batch"] = parent + "/2"
             batches.append(sis)
-            c3 = new_cert("LAB-A", sis["batch_id"], issued["LAB-A"])
-            c3["filed_under"] = parent
-            for t in [t for t in tests if t["lab"] == "LAB-A"]:
-                txt, v, ok = value_for(t, cv, rnd)
-                results.append({"batch_id": sis["batch_id"], "cert_no": c3["cert_no"], "lab": "LAB-A", "test_id": t["id"], "test": t["name"],
+            smap = {lab: new_cert(lab, sis["batch_id"], iss) for lab, iss in issued.items() if lab != "LAB-C" or defect != "RESULT_AFTER_PACK"}
+            smap["LAB-A"]["filed_under"] = parent  # the trap: the potency certificate is filed under the parent code
+            sctx = {}
+            for t in tests:
+                c = smap[t["lab"]]
+                txt, v, ok = value_for(t, cv, rnd, ctx=sctx)
+                results.append({"batch_id": sis["batch_id"], "cert_no": c["cert_no"], "lab": t["lab"], "test_id": t["id"], "test": t["name"],
                                 "result": txt, "unit": t.get("unit", ""), "criterion": crit(t, cv), "conforms": "yes" if ok else "no",
-                                "analysis_date": d(test_day), "kind": "release", "note": "sister sub-lot; filed under parent code"})
+                                "analysis_date": d(test_day), "kind": "release",
+                                "note": "sister sub-lot; certificate filed under parent code" if t["lab"] == "LAB-A" else "sister sub-lot"})
         if defect == "RETEST_DRIFT":
             months = rnd.randint(8, 14)
             rday = test_day + dt.timedelta(days=30 * months)
