@@ -81,7 +81,7 @@ Basis: draft Annex 22 (intended use, test data, human review, change control, mo
 | # | Deliverable | Done when |
 |---|---|---|
 | M1 | Rules layer + scorer + packets | **done:** 36/36, 0 false, deterministic |
-| M2 | Synthetic certificate PDFs (digital and scanned-looking) generated from the data, plus extraction with double read | the extracted data reproduce the source CSV at ≥ 99.5 %; every disagreement routed to a human |
+| M2 | Synthetic certificate PDFs (digital and scanned-looking) generated from the data, plus extraction with double read | **done:** 100 % after human queue, 0 undetected errors, on tuning and unseen data (`docs/M2_EXTRACTION_2026-11-20.md`); queue 7.6–9.4 % still to reduce |
 | M3 | Lot review summary + certificate-of-quality draft from a fixed template | values traceable to source on every page; render checks pass |
 | M4 | Audit trail, accounts, e-signature | the Annex 11 §§9, 12, 14 tests pass |
 | M5 | AI reviewer evaluated against the packets | scored by `score.py`; the result is published in the workshop, whatever it is |
