@@ -14,6 +14,9 @@ the document/data engine behind it. The owner is a Master Pharmacist and QC spec
   pays for. Keep it that way, and do not suggest otherwise.
 - Before every commit, run `scripts/check_clean.sh` (it fails on markers of non-public content).
 
+- **Owner's ruling, 20.11.2026:** nothing connected to the current employer is touched, discussed or worked on here:
+  no contract questions, no spin-off, no employer repositories. Those are for another time, and only when the owner raises them.
+
 ## 2. Market scope
 Until written consent or legal advice says otherwise, the target customers are **non-cannabis** EU-GMP
 manufacturers (pharmaceutical, herbal, food supplements, cosmetics) and ISO/IEC 17025 laboratories. Cannabis
